@@ -1,7 +1,7 @@
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
-import { todos } from './Todo/reducers';
+import todos from './Todo/reducers';
 import visibilityFilterReducer from './visibilityFilter/reducers';
 import modalReducer from './Modal/reducers';
 import authReducer from './auth/reducers';

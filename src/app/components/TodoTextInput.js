@@ -1,9 +1,8 @@
 class TodoTextInputController {
   /** @ngInject */
-  constructor(todoService, $window, $timeout) {
+  constructor($window, $timeout) {
     this.$timeout = $timeout;
     this.$window = $window;
-    this.todoService = todoService;
     this.editing = this.editing || false;
     this.text = this.text || '';
     if (this.text.length) {

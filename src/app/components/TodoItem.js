@@ -30,8 +30,5 @@ export const TodoItem = {
   controller: TodoItemController,
   bindings: {
     todo: '<',
-    onDestroy: '&',
-    onChange: '&',
-    onSave: '&'
   }
 };

@@ -1,35 +1,5 @@
-import { todo, todos } from './reducers';
+import todos from './reducers';
 import { toggleTodo, addTodo, clearCompleted, deleteTodo, editTodo } from './actions';
-
-// describe('todo reducer', () => {
-
-//   const state = {
-//     text: 'Run the tests',
-//     completed: false,
-//     id: 1
-//   };
-
-//   it('should handle TOGGLE_TODO', () => {
-//     const after = {
-//       text: 'Run the tests',
-//       completed: true,
-//       id: 1
-//     };
-//     const newState = todo(state, toggleTodo(1));
-//     // console.log('===============>', newState);
-//     expect(newState.completed).toEqual(after.completed);
-//   });
-
-//   it('should handle noop', () => {
-//     expect(
-//       todo(state, {
-//         type: 'NOOP',
-//         id: 1
-//       })
-//     ).toBe(state);
-//   });
-
-// });
 
 describe('todos reducer', () => {
 

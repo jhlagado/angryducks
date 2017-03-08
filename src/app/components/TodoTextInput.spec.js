@@ -3,13 +3,10 @@ import 'angular-mocks';
 import {TodoTextInput} from './TodoTextInput';
 
 describe('TodoTextInput component', () => {
-  class MockTodoService {
-  }
 
   beforeEach(() => {
     angular
       .module('todoTextInput', ['app/components/TodoTextInput.html'])
-      .service('todoService', MockTodoService)
       .component('todoTextInput', TodoTextInput);
     angular.mock.module('todoTextInput');
   });
@@ -29,16 +26,6 @@ describe('TodoTextInput component', () => {
     const component = $componentController('todoTextInput', {}, bindings);
     expect(component.text).toEqual('Hello');
   }));
-
-  // it('should call focus on element construction', angular.mock.inject($componentController => {
-  //   const focusSpy = jasmine.createSpy('focusSpy');
-  //   const bindings = {
-  //     text: 'Hello',
-  //     focus: focusSpy
-  //   };
-  //   const component = $componentController('todoTextInput', {}, bindings);
-  //   expect(component.focus).toHaveBeenCalled();
-  // }));
 
   it('should not call focus on element construction', angular.mock.inject($componentController => {
     const focusSpy = jasmine.createSpy('focusSpy');

@@ -14,7 +14,6 @@ class FooterController {
 
     store.subscribe(() => this.update());
     this.update();
-
   }
 
   update() {
@@ -22,10 +21,8 @@ class FooterController {
     this.filter = state.visibilityFilter;
 
     const todos = state.todos;
-
     this.completedCount = todos.reduce((count, todo) => todo.completed ? count + 1 : count, 0);
     this.activeCount = todos.length - this.completedCount;
-
   }
 
   handleClear() {

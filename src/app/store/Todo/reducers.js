@@ -7,21 +7,6 @@ import {
   COMPLETE_ALL,
 } from './actions';
 
-// const todo = (state = {}, action) => {
-//   switch (action.type) {
-//     case TOGGLE_TODO:
-//       if (state.id !== action.payload.id) {
-//         return state;
-//       }
-//       return {
-//         ...state,
-//         completed: !state.completed
-//       };
-//     default:
-//       return state;
-//   }
-// };
-
 const todos = (state = [], action) => {
   switch (action.type) {
 
@@ -77,4 +62,4 @@ const todos = (state = [], action) => {
   }
 };
 
-export { todos }; 
+export default todos; 
