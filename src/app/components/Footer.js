@@ -1,4 +1,3 @@
-// import store from '../store';
 import { clearCompleted } from '../store/Todo/actions';
 import { setVisibilityFilter } from '../store/visibilityFilter/actions';
 
