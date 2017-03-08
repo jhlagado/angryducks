@@ -20,7 +20,7 @@ const initialState = {
     completed: false,
     id: 0
   }],
-  filter: SHOW_ALL,
+  visibilityFilter: SHOW_ALL,
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
