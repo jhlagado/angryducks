@@ -1,16 +1,16 @@
-import store from '../store';
 import { addTodo } from '../store/Todo/actions';
 
 class HeaderController {
 
   /** @ngInject */
-  constructor() {
-    // console.log('!!!');
+  constructor(StoreService) {
+
+    this.store = StoreService.getStore();
   }
 
   handleSave(text) {
     if (text.length !== 0) {
-      store.dispatch(addTodo(text));
+      this.store.dispatch(addTodo(text));
     }
   }
 }

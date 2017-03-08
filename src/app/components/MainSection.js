@@ -1,10 +1,11 @@
-import store from '../store';
 import { completeAll } from '../store/Todo/actions';
 
 class MainSectionController {
 
   /** @ngInject */
-  constructor() {
+  constructor(StoreService) {
+
+    this.store = StoreService.getStore();
 
     this.completeReducer = (count, todo) => todo.completed ? count + 1 : count;
     this.filters = {
@@ -13,19 +14,19 @@ class MainSectionController {
       SHOW_ACTIVE: todo => !todo.completed,
     };
 
-    store.subscribe(() => this.update());
+    this.store.subscribe(() => this.update());
     this.update();
   }
 
   update() {
-    const state = store.getState();
+    const state = this.store.getState();
     const filter = state.visibilityFilter;
     this.selectedFilter = this.filters[filter];
     this.todos = state.todos;
   }
 
   handleCompleteAll() {
-    store.dispatch(completeAll());
+    this.store.dispatch(completeAll());
   }
 
 }

@@ -1,6 +1,7 @@
 import angular from 'angular';
 import 'todomvc-app-css/index.css';
 
+import {StoreService} from './storeservice';
 import {App} from './app/containers/App';
 import {Header} from './app/components/Header';
 import {MainSection} from './app/components/MainSection';
@@ -15,6 +16,7 @@ import './index.scss';
 angular
   .module('app', ['ui.router'])
   .config(routesConfig)
+  .service('StoreService', StoreService)
   .component('app', App)
   .component('headerComponent', Header)
   .component('footerComponent', Footer)

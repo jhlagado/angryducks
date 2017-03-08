@@ -1,10 +1,13 @@
-import store from '../store';
+// import store from '../store';
 import { clearCompleted } from '../store/Todo/actions';
 import { setVisibilityFilter } from '../store/visibilityFilter/actions';
 
 class FooterController {
 
-  constructor() {
+  /** @ngInject */
+  constructor(StoreService) {
+
+    this.store = StoreService.getStore();
 
     this.filterTitles = {
       SHOW_ALL: 'All',
@@ -12,12 +15,12 @@ class FooterController {
       SHOW_COMPLETED: 'Completed'
     };
 
-    store.subscribe(() => this.update());
+    this.store.subscribe(() => this.update());
     this.update();
   }
 
   update() {
-    const state = store.getState();
+    const state = this.store.getState();
     this.filter = state.visibilityFilter;
 
     const todos = state.todos;
@@ -26,11 +29,11 @@ class FooterController {
   }
 
   handleClear() {
-    store.dispatch(clearCompleted());
+    this.store.dispatch(clearCompleted());
   }
 
   handleChange(filter) {
-    store.dispatch(setVisibilityFilter(filter));
+    this.store.dispatch(setVisibilityFilter(filter));
   }
 }
 

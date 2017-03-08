@@ -1,15 +1,15 @@
-import store from '../store';
-
 class AppController {
 
   /** @ngInject */
-  constructor() {
-    store.subscribe(() => this.update());
+  constructor(StoreService) {
+
+    this.store = StoreService.getStore();
+    this.store.subscribe(() => this.update());
     this.update();
   } 
 
   update() {
-    const state = store.getState();
+    const state = this.store.getState();
     this.todos = state.todos;
     this.filter = state.visibilityFilter;
   }

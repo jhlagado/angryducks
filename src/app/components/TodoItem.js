@@ -1,9 +1,11 @@
-import store from '../store';
 import { toggleTodo, deleteTodo, editTodo } from '../store/Todo/actions';
 
 class TodoItemController {
 
-  constructor() {
+  /** @ngInject */
+  constructor(StoreService) {
+
+    this.store = StoreService.getStore();
     this.editing = false;
   }
 
@@ -12,16 +14,16 @@ class TodoItemController {
   }
 
   handleSave(text) {
-    store.dispatch(editTodo(text, this.todo.id));
+    this.store.dispatch(editTodo(text, this.todo.id));
     this.editing = false;
   }
 
   handleDestroy() {
-    store.dispatch(deleteTodo(this.todo.id));
+    this.store.dispatch(deleteTodo(this.todo.id));
   }
 
   handleToggle() {
-    store.dispatch(toggleTodo(this.todo.id));
+    this.store.dispatch(toggleTodo(this.todo.id));
   }
 }
 
