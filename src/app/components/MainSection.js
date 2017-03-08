@@ -1,48 +1,36 @@
-import visibilityFilters from '../constants/VisibilityFilters';
+import store from '../store';
+import { completeAll } from '../store/Todo/actions';
 
 class MainSectionController {
+
   /** @ngInject */
-  constructor(todoService) {
-    this.todoService = todoService;
-    this.selectedFilter = visibilityFilters[this.filter];
+  constructor() {
+
     this.completeReducer = (count, todo) => todo.completed ? count + 1 : count;
+    this.filters = {
+      SHOW_ALL: () => true,
+      SHOW_COMPLETED: todo => todo.completed,
+      SHOW_ACTIVE: todo => !todo.completed,
+    };
+
+    store.subscribe(() => this.update());
+    this.update();
   }
 
-  handleClearCompleted() {
-    this.todos = this.todoService.clearCompleted(this.todos);
+  update() {
+    const state = store.getState();
+    const filter = state.visibilityFilter;
+    this.selectedFilter = this.filters[filter];
+    this.todos = state.todos;
   }
 
   handleCompleteAll() {
-    this.todos = this.todoService.completeAll(this.todos);
+    store.dispatch(completeAll());
   }
 
-  handleShow(filter) {
-    this.filter = filter;
-    this.selectedFilter = visibilityFilters[filter];
-  }
-
-  handleChange(id) {
-    this.todos = this.todoService.completeTodo(id, this.todos);
-  }
-
-  handleSave(e) {
-    if (e.text.length === 0) {
-      this.todos = this.todoService.deleteTodo(e.id, this.todos);
-    } else {
-      this.todos = this.todoService.editTodo(e.id, e.text, this.todos);
-    }
-  }
-
-  handleDestroy(e) {
-    this.todos = this.todoService.deleteTodo(e, this.todos);
-  }
 }
 
 export const MainSection = {
   template: require('./MainSection.html'),
   controller: MainSectionController,
-  bindings: {
-    todos: '=',
-    filter: '<'
-  }
 };

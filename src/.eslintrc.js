@@ -27,5 +27,6 @@ module.exports = {
     'space-before-function': 0,
     'space-before-blocks': 0,
     'space-before-function-paren': 0,
+    'no-useless-constructor': 0,
   }
 }

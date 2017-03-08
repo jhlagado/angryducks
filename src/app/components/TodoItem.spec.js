@@ -26,20 +26,20 @@ describe('TodoItem component', () => {
     expect(component.editing).toEqual(true);
   }));
 
-  it('should call onSave', angular.mock.inject($componentController => {
-    const bindings = {
-      todo: {
-        text: 'Use ngrx/store',
-        completed: false,
-        id: 0
-      },
-      onSave: () => {}
-    };
-    const component = $componentController('todoItem', {}, bindings);
-    spyOn(component, 'onSave').and.callThrough();
-    component.handleSave('Hello');
-    expect(component.onSave).toHaveBeenCalledWith({
-      todo: {text: 'Hello', id: 0}
-    });
-  }));
+  // it('should call onSave', angular.mock.inject($componentController => {
+  //   const bindings = {
+  //     todo: {
+  //       text: 'Use ngrx/store',
+  //       completed: false,
+  //       id: 0
+  //     },
+  //     onSave: () => {}
+  //   };
+  //   const component = $componentController('todoItem', {}, bindings);
+  //   spyOn(component, 'onSave').and.callThrough();
+  //   component.handleSave('Hello');
+  //   expect(component.onSave).toHaveBeenCalledWith({
+  //     todo: {text: 'Hello', id: 0}
+  //   });
+  // }));
 });

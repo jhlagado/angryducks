@@ -19,24 +19,24 @@ describe('Footer component', () => {
     expect(footer.html().trim()).toEqual('2');
   }));
 
-  it('shoud call onClearCompleted', angular.mock.inject($componentController => {
-    const bindings = {
-      onClearCompleted: () => {}
-    };
-    const component = $componentController('footerComponent', {}, bindings);
-    spyOn(component, 'onClearCompleted').and.callThrough();
-    component.handleClear();
-    expect(component.onClearCompleted).toHaveBeenCalled();
-  }));
+  // it('shoud call onClearCompleted', angular.mock.inject($componentController => {
+  //   const bindings = {
+  //     onClearCompleted: () => {}
+  //   };
+  //   const component = $componentController('footerComponent', {}, bindings);
+  //   spyOn(component, 'onClearCompleted').and.callThrough();
+  //   component.handleClear();
+  //   expect(component.onClearCompleted).toHaveBeenCalled();
+  // }));
 
-  it('shoud call onShow', angular.mock.inject($componentController => {
-    const bindings = {
-      onShow: () => {}
-    };
-    const component = $componentController('footerComponent', {}, bindings);
-    spyOn(component, 'onShow').and.callThrough();
-    component.handleChange('show_all');
-    expect(component.onShow).toHaveBeenCalledWith({filter: 'show_all'});
-  }));
+  // it('shoud call onShow', angular.mock.inject($componentController => {
+  //   const bindings = {
+  //     onShow: () => {}
+  //   };
+  //   const component = $componentController('footerComponent', {}, bindings);
+  //   spyOn(component, 'onShow').and.callThrough();
+  //   component.handleChange('show_all');
+  //   expect(component.onShow).toHaveBeenCalledWith({filter: 'show_all'});
+  // }));
 });
 

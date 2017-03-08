@@ -1,37 +1,35 @@
 import { todo, todos } from './reducers';
-import { toggleTodo, addTodo } from './actions';
+import { toggleTodo, addTodo, clearCompleted, deleteTodo, editTodo } from './actions';
 
-// jest.resetModules();
+// describe('todo reducer', () => {
 
-describe('todo reducer', () => {
+//   const state = {
+//     text: 'Run the tests',
+//     completed: false,
+//     id: 1
+//   };
 
-  const state = {
-    text: 'Run the tests',
-    completed: false,
-    id: 1
-  };
+//   it('should handle TOGGLE_TODO', () => {
+//     const after = {
+//       text: 'Run the tests',
+//       completed: true,
+//       id: 1
+//     };
+//     const newState = todo(state, toggleTodo(1));
+//     // console.log('===============>', newState);
+//     expect(newState.completed).toEqual(after.completed);
+//   });
 
-  it('should handle TOGGLE_TODO', () => {
-    const after = {
-      text: 'Run the tests',
-      completed: true,
-      id: 1
-    };
-    const newState = todo(state, toggleTodo(1));
-    // console.log('===============>', newState);
-    expect(newState.completed).toEqual(after.completed);
-  });
+//   it('should handle noop', () => {
+//     expect(
+//       todo(state, {
+//         type: 'NOOP',
+//         id: 1
+//       })
+//     ).toBe(state);
+//   });
 
-  it('should handle noop', () => {
-    expect(
-      todo(state, {
-        type: 'NOOP',
-        id: 1
-      })
-    ).toBe(state);
-  });
-
-});
+// });
 
 describe('todos reducer', () => {
 
@@ -51,6 +49,12 @@ describe('todos reducer', () => {
       text: 'Fix the tests',
       completed: false,
       id: 2
+  };
+
+  const item4 = {
+      text: 'I\'m completed',
+      completed: true,
+      id: 3
   };
 
   it('should handle initial state', () => {
@@ -78,4 +82,35 @@ describe('todos reducer', () => {
 
     expect(state2[1].completed).toEqual(!state1[1].completed);
   });
+
+  it('should handle DELETE_TODO', () => {
+
+    const action1 = deleteTodo(1);
+    const state1 = [item1, item2, item3];
+    const state2 = todos(state1, action1);
+
+    expect(state2.length).toEqual(2);
+    expect(state2[0]).toEqual(state1[0]);
+    expect(state2[1]).toEqual(state1[2]);
+  });
+
+  it('should handle EDIT_TODO', () => {
+
+    const action1 = editTodo('FRED', 0);
+    const state1 = [item1, item2, item3];
+    const state2 = todos(state1, action1);
+
+    expect(state2[0].text).toEqual('FRED');
+  });
+
+  it('should handle CLEAR_COMPLETED', () => {
+
+    const action1 = clearCompleted();
+    const state1 = [item1, item4];
+    const state2 = todos(state1, action1);
+
+    expect(state2.length).toEqual(1);
+    expect(state2[0].completed).toEqual(false);
+  });
+
 });

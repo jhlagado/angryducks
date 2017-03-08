@@ -1,4 +1,8 @@
+import store from '../store';
+import { toggleTodo, deleteTodo, editTodo } from '../store/Todo/actions';
+
 class TodoItemController {
+
   constructor() {
     this.editing = false;
   }
@@ -8,17 +12,16 @@ class TodoItemController {
   }
 
   handleSave(text) {
-    this.onSave({
-      todo: {
-        text,
-        id: this.todo.id
-      }
-    });
+    store.dispatch(editTodo(text, this.todo.id));
     this.editing = false;
   }
 
-  handleDestroy(id) {
-    this.onDestroy({id});
+  handleDestroy() {
+    store.dispatch(deleteTodo(this.todo.id));
+  }
+
+  handleToggle() {
+    store.dispatch(toggleTodo(this.todo.id));
   }
 }
 

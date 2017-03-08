@@ -1,12 +1,16 @@
+import store from '../store';
+import { addTodo } from '../store/Todo/actions';
+
 class HeaderController {
+
   /** @ngInject */
-  constructor(todoService) {
-    this.todoService = todoService;
+  constructor() {
+    // console.log('!!!');
   }
 
   handleSave(text) {
     if (text.length !== 0) {
-      this.todos = this.todoService.addTodo(text, this.todos);
+      store.dispatch(addTodo(text));
     }
   }
 }
@@ -14,7 +18,4 @@ class HeaderController {
 export const Header = {
   template: require('./Header.html'),
   controller: HeaderController,
-  bindings: {
-    todos: '='
-  }
 };
