@@ -1,5 +1,5 @@
-import {ADD_TODO, TOGGLE_TODO,
-   toggleTodo, addTodo } from './actions';
+import {ADD_TODO, COMPLETE_TODO,
+   completeTodo, addTodo } from './actions';
 
 describe('todo actions', () => {
 
@@ -13,10 +13,10 @@ describe('todo actions', () => {
     });
   });
 
-  it('toggleTodo should create TOGGLE_TODO action', () => {
+  it('completeTodo should create COMPLETE_TODO action', () => {
     
-    expect(toggleTodo(1)).toEqual({
-      type: TOGGLE_TODO,
+    expect(completeTodo(1)).toEqual({
+      type: COMPLETE_TODO,
       payload: {
         id: 1
       }

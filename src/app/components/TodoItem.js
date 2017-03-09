@@ -1,4 +1,4 @@
-import { toggleTodo, deleteTodo, editTodo } from '../store/Todo/actions';
+import { completeTodo, deleteTodo, editTodo } from '../store/Todo/actions';
 
 class TodoItemController {
 
@@ -14,7 +14,7 @@ class TodoItemController {
   }
 
   handleSave(text) {
-    this.store.dispatch(editTodo(text, this.todo.id));
+    this.store.dispatch(editTodo(this.todo.id, text));
     this.editing = false;
   }
 
@@ -22,8 +22,8 @@ class TodoItemController {
     this.store.dispatch(deleteTodo(this.todo.id));
   }
 
-  handleToggle() {
-    this.store.dispatch(toggleTodo(this.todo.id));
+  handleChange() {
+    this.store.dispatch(completeTodo(this.todo.id));
   }
 }
 

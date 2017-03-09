@@ -1,10 +1,10 @@
 import {
   ADD_TODO,
-  TOGGLE_TODO,
   DELETE_TODO,
   EDIT_TODO,
-  CLEAR_COMPLETED,
+  COMPLETE_TODO,
   COMPLETE_ALL,
+  CLEAR_COMPLETED,
 } from './actions';
 
 const todos = (state = [], action) => {
@@ -15,16 +15,6 @@ const todos = (state = [], action) => {
         id: action.payload.id,
         text: action.payload.text,
         completed: false
-      });
-
-    case TOGGLE_TODO:
-      return state.map(function (t) {
-        if (t.id === action.payload.id)
-          return {
-            ...t,
-            completed: !t.completed
-          };
-        return t;
       });
 
     case DELETE_TODO:
@@ -42,9 +32,14 @@ const todos = (state = [], action) => {
         return t;
       });
 
-    case CLEAR_COMPLETED:
-      return state.filter(function (t) {
-        return t.completed === false;
+    case COMPLETE_TODO:
+      return state.map(function (t) {
+        if (t.id === action.payload.id)
+          return {
+            ...t,
+            completed: !t.completed
+          };
+        return t;
       });
 
     case COMPLETE_ALL: {
@@ -56,6 +51,11 @@ const todos = (state = [], action) => {
         };
       });
     }  
+
+    case CLEAR_COMPLETED:
+      return state.filter(function (t) {
+        return t.completed === false;
+      });
 
     default:
       return state;

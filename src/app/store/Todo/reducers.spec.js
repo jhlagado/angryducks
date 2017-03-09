@@ -1,5 +1,5 @@
 import todos from './reducers';
-import { toggleTodo, addTodo, clearCompleted, deleteTodo, editTodo } from './actions';
+import { completeTodo, addTodo, clearCompleted, deleteTodo, editTodo } from './actions';
 
 describe('todos reducer', () => {
 
@@ -44,9 +44,9 @@ describe('todos reducer', () => {
 
   });
 
-  it('should handle TOGGLE_TODO', () => {
+  it('should handle COMPLETE_TODO', () => {
 
-    const action1 = toggleTodo(1);
+    const action1 = completeTodo(1);
     const state1 = [item1, item2, item3];
     const state2 = todos(state1, action1);
 

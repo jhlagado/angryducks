@@ -5,7 +5,12 @@
   "env": {
     "test": {
       "plugins": [
-        "istanbul",
+        "transform-object-rest-spread",
+        "istanbul"
+      ]
+    },
+    "production": {
+      "plugins": [
         "transform-object-rest-spread"
       ]
     }

@@ -10,7 +10,7 @@
       class="toggle"
       type="checkbox"
       ng-checked="$ctrl.todo.completed"
-      ng-click="$ctrl.handleToggle()"
+      ng-click="$ctrl.handleChange()"
       />
     <label ng-dblclick="$ctrl.handleDoubleClick()">{{$ctrl.todo.text}}</label>
     <button class="destroy" ng-click="$ctrl.handleDestroy()"></button>
