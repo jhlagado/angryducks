@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { SHOW_COMPLETED, SHOW_ACTIVE } from './constants';
 
 const getVisibilityFilter = state => state.visibilityFilter;
 const getTodos = state => state.todos;
@@ -8,9 +9,9 @@ export const makeGetVisibleTodos = () => {
     [ getVisibilityFilter, getTodos ],
     (visibilityFilter, todos) => {
       switch (visibilityFilter) {
-        case 'SHOW_COMPLETED':
+        case SHOW_COMPLETED:
           return todos.filter(todo => todo.completed);
-        case 'SHOW_ACTIVE':
+        case SHOW_ACTIVE:
           return todos.filter(todo => !todo.completed);
         default:
           return todos;

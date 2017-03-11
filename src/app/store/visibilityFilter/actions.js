@@ -1,4 +1,4 @@
 import { createAction } from 'redux-actions';
+import { SET_VISIBILITY_FILTER } from './constants';
 
-export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 export const setVisibilityFilter = createAction(SET_VISIBILITY_FILTER);

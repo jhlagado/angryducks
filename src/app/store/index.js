@@ -1,17 +1,8 @@
-import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-import todos from './Todo/reducers';
-import visibilityFilterReducer from './visibilityFilter/reducers';
-import modalReducer from './Modal/reducers';
-import authReducer from './auth/reducers';
-
-const rootReducer = combineReducers({
-  auth: authReducer,
-  todos: todos,
-  visibilityFilter: visibilityFilterReducer,
-  modals: modalReducer,
-});
+import SHOW_ALL from './visibilityFilter/constants';
+import rootReducer from './reducers';
 
 const initialState = {
   todos: [{
@@ -19,12 +10,22 @@ const initialState = {
     completed: false,
     id: 0
   }],
-  visibilityFilter: 'SHOW_ALL',
+  visibilityFilter: SHOW_ALL,
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export default createStore(
+const store = createStore(
   rootReducer, initialState,
   composeEnhancers(applyMiddleware(thunk))
 );
+
+if (module.hot) {
+  // Enable Webpack hot module replacement for reducers
+  module.hot.accept('./reducers', () => {
+    const nextReducer = rootReducer;
+    store.replaceReducer(nextReducer);
+  });
+}
+
+export default store;

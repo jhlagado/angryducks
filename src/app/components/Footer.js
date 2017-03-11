@@ -1,5 +1,6 @@
 import { clearCompleted } from '../store/Todo/actions';
 import { setVisibilityFilter } from '../store/visibilityFilter/actions';
+import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../store/visibilityFilter/constants';
 
 class FooterController {
 
@@ -9,9 +10,9 @@ class FooterController {
     this.store = StoreService.getStore();
 
     this.filterTitles = {
-      SHOW_ALL: 'All',
-      SHOW_ACTIVE: 'Active',
-      SHOW_COMPLETED: 'Completed'
+      [SHOW_ALL]: 'All',
+      [SHOW_ACTIVE]: 'Active',
+      [SHOW_COMPLETED]: 'Completed'
     };
 
     this.store.subscribe(() => this.update());

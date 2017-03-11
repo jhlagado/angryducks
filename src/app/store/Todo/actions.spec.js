@@ -1,5 +1,5 @@
-import {ADD_TODO, COMPLETE_TODO,
-   completeTodo, addTodo } from './actions';
+import { ADD_TODO, COMPLETE_TODO } from './constants';
+import { completeTodo, addTodo } from './actions';
 
 describe('todo actions', () => {
 
